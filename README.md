@@ -1,3 +1,4 @@
+
 # 🚀 Hirefy - Job Portal Application
 
 A modern, full-stack job portal built with React, Node.js, Express, and PostgreSQL (Supabase).
@@ -419,4 +420,5 @@ This project is for educational purposes.
 **Built with ❤️ using React, Node.js, Express, and PostgreSQL**
 
 🎉 **Happy Coding!** 🚀
+
 
