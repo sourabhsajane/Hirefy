@@ -26,7 +26,7 @@ const Login: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await api.post('/auth/login', formData);
+      const response = await api.post('/api/auth/login', formData);
       
       // Store auth data
       setAuth(response.data.token, response.data.user);
