@@ -194,7 +194,7 @@ const generateAMPEmailTemplate = (candidate, job, recruiterId) => {
             
             <div style="text-align: center;">
               <a 
-                href="http://localhost:3000/profile?skills=${allSkillsParam}"
+                href="${process.env.CLIENT_URL || 'http://localhost:3000'}/profile?skills=${allSkillsParam}"
                 class="cta-button primary"
                 style="cursor: pointer; border: none; font-size: 16px; padding: 14px 40px; display: inline-block; text-decoration: none;"
               >
@@ -207,7 +207,7 @@ const generateAMPEmailTemplate = (candidate, job, recruiterId) => {
               <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px;">
                 ${job.skills_required.map(skill => `
                   <a 
-                    href="http://localhost:3000/profile?skills=${encodeURIComponent(skill)}"
+                    href="${process.env.CLIENT_URL || 'http://localhost:3000'}/profile?skills=${encodeURIComponent(skill)}"
                     style="display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #1f2937 100%); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500;"
                   >
                     ✨ ${skill}
@@ -219,14 +219,14 @@ const generateAMPEmailTemplate = (candidate, job, recruiterId) => {
         ` : `
         <div style="background: #fef3c7; padding: 20px; border-radius: 8px; text-align: center;">
           <p style="margin: 0; color: #78350f;">No specific skills required for this job. Visit your profile to add skills manually.</p>
-          <a href="http://localhost:3000/profile" class="cta-button primary" style="margin-top: 15px; display: inline-block;">
+          <a href="${process.env.CLIENT_URL || 'http://localhost:3000'}/profile" class="cta-button primary" style="margin-top: 15px; display: inline-block;">
             Go to Profile
           </a>
         </div>
         `}
         
         <p style="text-align: center; margin-top: 25px;">
-          <a href="http://localhost:3000/dashboard" class="cta-button" style="background: #6b7280; text-decoration: none;">
+          <a href="${process.env.CLIENT_URL || 'http://localhost:3000'}/dashboard" class="cta-button" style="background: #6b7280; text-decoration: none;">
             👀 View Job Details
           </a>
         </p>
@@ -360,7 +360,7 @@ const generateFallbackEmailTemplate = (candidate, job) => {
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; justify-content: center;">
           ${job.skills_required.map(skill => `
             <a 
-              href="http://localhost:3000/profile?skills=${encodeURIComponent(skill)}"
+              href="${process.env.CLIENT_URL || 'http://localhost:3000'}/profile?skills=${encodeURIComponent(skill)}"
               style="display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #1f2937 100%); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 600; transition: transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
             >
               ✨ ${skill}
@@ -371,7 +371,7 @@ const generateFallbackEmailTemplate = (candidate, job) => {
         <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #e2e8f0; text-align: center;">
           <p style="font-size: 13px; color: #6b7280; margin-bottom: 10px;">Or add all skills at once:</p>
           <a 
-            href="http://localhost:3000/profile?skills=${encodeURIComponent(job.skills_required.join(','))}"
+            href="${process.env.CLIENT_URL || 'http://localhost:3000'}/profile?skills=${encodeURIComponent(job.skills_required.join(','))}"
             style="display: inline-block; background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%); color: #1e40af; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;"
           >
             ⚡ Add All ${job.skills_required.length} Skills
