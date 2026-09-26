@@ -128,12 +128,10 @@ router.get('/', authenticateToken, async (req, res) => {
     
     console.log('✅ Educations data retrieved:', educations?.length || 0, 'educations');
 
-    // Calculate profile completion percentage with detailed breakdown
     let completionPercentage = 0;
     let totalPoints = 0;
     let earnedPoints = 0;
 
-    // Personal Information Section (35 points total)
     const personalInfoFields = [
       { field: 'name', weight: 8, label: 'Full Name' },
       { field: 'email', weight: 5, label: 'Email' },
@@ -151,61 +149,60 @@ router.get('/', authenticateToken, async (req, res) => {
       }
     });
 
-    // Skills Section (25 points total)
+  
     totalPoints += 25;
     if (skills && skills.length > 0) {
       if (skills.length >= 5) {
-        earnedPoints += 25; // Full points for 5+ skills
+        earnedPoints += 25; 
       } else if (skills.length >= 3) {
-        earnedPoints += 20; // Good points for 3-4 skills
+        earnedPoints += 20; 
       } else if (skills.length >= 1) {
-        earnedPoints += 15; // Partial points for 1-2 skills
+        earnedPoints += 15; 
       }
     }
 
-    // Experience Section (25 points total)
+    
     totalPoints += 25;
     console.log('🎓 User is_fresher status:', user.is_fresher);
     if (user.is_fresher) {
-      // Freshers get 20 points automatically
+    
       earnedPoints += 20;
       console.log('✅ Added 20 points for fresher status');
     } else if (experiences && experiences.length > 0) {
       if (experiences.length >= 3) {
-        earnedPoints += 25; // Full points for 3+ experiences
+        earnedPoints += 25;
       } else if (experiences.length >= 2) {
-        earnedPoints += 20; // Good points for 2 experiences
+        earnedPoints += 20; 
       } else {
-        earnedPoints += 15; // Basic points for 1 experience
+        earnedPoints += 15; 
       }
       console.log('✅ Added experience points for', experiences.length, 'experiences');
     } else {
       console.log('❌ No experience points added - not fresher and no experiences');
     }
 
-    // Education Section (15 points total)
+    
     totalPoints += 15;
     if (educations && educations.length > 0) {
       if (educations.length >= 2) {
-        earnedPoints += 15; // Full points for 2+ educations
+        earnedPoints += 15;
       } else {
-        earnedPoints += 10; // Partial points for 1 education
+        earnedPoints += 10;
       }
     }
 
     completionPercentage = Math.round((earnedPoints / totalPoints) * 100);
     
-    // Ensure percentage doesn't exceed 100%
+    /
     if (completionPercentage > 100) completionPercentage = 100;
 
-    // Calculate section-specific progress
     const personalInfoProgress = Math.round((personalInfoFields.reduce((acc, { field, weight }) => 
       acc + (user[field] && user[field].toString().trim() ? weight : 0), 0) / 35) * 100);
     
     const skillsProgress = skills && skills.length > 0 ? 
       Math.min(100, Math.round((skills.length / 5) * 100)) : 0;
     
-    const experienceProgress = user.is_fresher ? 80 : // Freshers get 80% progress
+    const experienceProgress = user.is_fresher ? 80 : 
       (experiences && experiences.length > 0 ? 
         Math.min(100, Math.round((experiences.length / 3) * 100)) : 0);
     

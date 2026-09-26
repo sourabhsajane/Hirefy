@@ -1,6 +1,10 @@
+const dotenv = require('dotenv');
+
+// Load environment variables FIRST before any other imports
+dotenv.config();
+
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/jobs');
@@ -8,9 +12,6 @@ const profileRoutes = require('./routes/profile');
 const companyRoutes = require('./routes/company');
 const applicationRoutes = require('./routes/applications');
 const adminRoutes = require('./routes/admin');
-
-// Load environment variables
-dotenv.config();
 
 // Debug: Log environment variables (remove in production)
 console.log('🔍 Environment Variables Debug:');

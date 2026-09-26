@@ -1614,12 +1614,12 @@ const CandidateProfile: React.FC = () => {
       earnedPoints: number;
       totalPoints: number;
     } | undefined;
-    const isProfileComplete = completionPercentage >= 80; // Consider 80%+ as complete for resume generation
+    const isProfileComplete = completionPercentage >= 80; 
 
     const getProgressColor = (percentage: number) => {
-      if (percentage >= 90) return 'linear-gradient(135deg, #10b981 0%, #059669 100%)'; // Green
-      if (percentage >= 70) return 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'; // Yellow
-      if (percentage >= 50) return 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)'; // Orange
+      if (percentage >= 90) return 'linear-gradient(135deg, #10b981 0%, #059669 100%)'; 
+      if (percentage >= 70) return 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'; 
+      if (percentage >= 50) return 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)'; 
       return 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'; // Red
     };
 
